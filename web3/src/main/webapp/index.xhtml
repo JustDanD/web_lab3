@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui" >
+<h:head>
+    <title>Основная страница</title>
+    <h:outputStylesheet library="css" name="style.css"/>
+</h:head>
+<h:body>
+    <div id="parts">
+    <div id="title">
+        <span>
+            Лабораторная работа №3 Batman Edition<br/> Пименов Данила P3230 <br/> Вариант: 13
+        </span>
+    </div>
+
+        <div id="container">
+            <div id="box">
+                <div id="igraph">
+                    <div id="graphFrameInner">
+                        <div id="graphScroll">
+                            <div id="graphHeight">
+                                <canvas id="graph" height="320" width="320"/>
+                                <canvas id="area" height="320" width="320"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="controls">
+                    <h:form id="controlForm">
+                        <h:panelGrid columns="1">
+                            <h:outputText value="Выберите X:"/>
+                            <p:selectOneRadio id="x" layout="lineDirection" value="${resultBean.x}" required="true">
+                                <f:selectItem itemLabel="-4" itemValue="-4.0"/>
+                                <f:selectItem itemLabel="-3" itemValue="-3.0"/>
+                                <f:selectItem itemLabel="-2" itemValue="-2.0"/>
+                                <f:selectItem itemLabel="-1" itemValue="-1.0"/>
+                                <f:selectItem itemLabel="0" itemValue="0.0"/>
+                                <f:selectItem itemLabel="1" itemValue="1.0"/>
+                                <f:selectItem itemLabel="2" itemValue="2.0"/>
+                                <f:selectItem itemLabel="3" itemValue="3.0"/>
+                                <f:selectItem itemLabel="4" itemValue="4.0"/>
+                            </p:selectOneRadio>
+                        </h:panelGrid>
+                        <br/>
+                        <h:panelGrid columns="1">
+                            <h:outputText value="Введите Y (-3...5):"/>
+                            <p:inputNumber id="y" minValue="-3" maxValue="5" value="${resultBean.y}" emptyValue="zero" required="true"/>
+                        </h:panelGrid>
+                        <br/>
+                        <h:panelGrid columns="1">
+                            <h:outputText value="Выберите R:"/>
+                            <p:inputNumber id="r" minValue="0.25" maxValue="1.25" onchange="changeR()" value="${resultBean.r}" emptyValue="1"/>
+                            <p:slider id="rSlider" for="r" minValue="0.25" maxValue="1.25" step="0.05" animate="true" />
+                        </h:panelGrid>
+                        <br/>
+                        <h:panelGrid columns="2">
+                            <p:commandButton id="send" styleClass="ui-button-raised ui-button-success" value="Отправить" action="${resultBean.check()}" update="resultTable"/>
+                            <p:commandButton action="start?faces-redirect=true" styleClass="ui-button-raised ui-button-info" value="Стартовая страница"/>
+                        </h:panelGrid>
+                        <p:remoteCommand name="changeR" actionListener="#{resultBean.onRadiusChange()}" style="display: none;"/>
+                        <p:remoteCommand name="drawByJS" actionListener="#{resultBean.check()}" style="display: none;" update="resultTable"/>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+
+        <div id="table">
+            <p:dataTable id="resultTable" var="results" value="#{resultBean.list}" scrollable="true" scrollHeight="300" styleClass="table-container__table table">
+                <p:column headerText="X">
+                    <h:outputText value="#{results.x}" />
+                </p:column>
+
+                <p:column headerText="Y">
+                    <h:outputText value="#{results.y}" />
+                </p:column>
+
+                <p:column headerText="R">
+                    <h:outputText value="#{results.r}" />
+                </p:column>
+
+                <p:column headerText="Результат">
+                    <h:outputText value="#{results.result ? 'Да' : 'Нет'}" styleClass="#{results.result ? 'yes' : 'no'}"/>
+                </p:column>
+            </p:dataTable>
+        </div>
+
+        <div id="footer">
+            <span>
+                Powered by: <a href="https://vk.com/dpimenov98">Pimenov Danila P3230</a><br/>
+                <a href="https://github.com/JustDanD/web_lab3">GitHub</a>
+            </span>
+        </div>
+
+    </div>
+
+    <h:outputScript library="js" name="http_unpkg.com_mathjs@9.5.0_lib_browser_math.js"/>
+    <h:outputScript library="js" name="graph.js"/>
+    <script>
+        draw('#{resultBean.r}');
+        changeR();
+    </script>
+
+    <ui:repeat value="#{resultBean.list}" var="res">
+        <script>
+            drawDotByClick((("#{res.isResult()}" === 'true') ? "#37f863" : "crimson"), "#{res.x}", "#{res.y}");
+        </script>
+    </ui:repeat>
+</h:body>
+
+</html>

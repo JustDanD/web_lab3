@@ -1,0 +1,119 @@
+#parts {
+    width: 90%;
+    margin: 0 auto;
+}
+
+#parts>div {
+    font-family: Arial, serif;
+    background-color: gainsboro;
+    margin-top: 1%;
+    box-shadow: 0 0 3px black;
+}
+
+body {
+    background: lightcyan;
+}
+
+#main {
+    text-align: center;
+    padding: 2%;
+    font-size: 14pt;
+}
+
+#title {
+    text-align: center;
+    font-size: 30pt;
+    color: #81d020;
+}
+
+#footer {
+    text-align: center;
+    font-size: 9pt;
+    color: gray;
+}
+
+#table {
+    padding: 10px;
+}
+
+a:visited {
+    color: gray;
+}
+
+.ui-analog-clock {
+    width: 30%;
+    margin-left: 35%;
+    margin-right: 35%;
+}
+
+#container {
+    background-color: transparent !important;
+    overflow:hidden;
+    width:100%
+}
+#box {
+    padding: 10px;
+    white-space: nowrap;
+    background-color: gainsboro;
+}
+#box div{
+    display:inline-block;
+}
+
+#controls {
+    padding: 10px;
+    height: 340px;
+    width:50%;
+    overflow: auto;
+    background-color: #efefef;
+}
+
+#igraph {
+    height: 340px;
+    width: 50%;
+    background-color: #efefef;
+}
+
+#graphFrameInner {
+    padding-left: 30%;
+    overflow: auto;
+    width: 100%;
+    height: 340px;
+}
+
+#graphScroll {
+    position: relative;
+    height: auto;
+}
+
+#graphHeight {
+    height: 100%;
+}
+
+#graph {
+    padding-right: 20px;
+    position: absolute;
+    z-index: 1;
+}
+
+#area {
+    padding-right: 20px;
+    position: absolute;
+    z-index: 0;
+}
+
+#controlForm div {
+    display: block;
+}
+
+tr.ui-widget-content.ui-datatable-empty-message {
+    display: none;
+}
+
+.yes {
+    color: #37f863;
+}
+
+.no {
+    color: crimson;
+}

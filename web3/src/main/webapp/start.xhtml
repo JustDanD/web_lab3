@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui" >
+<h:head>
+    <title>Начальная страница</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(window).resize( function(){
+            window.location.reload();
+        });
+    </script>
+    <h:outputStylesheet library="css" name="style.css"/>
+</h:head>
+
+<h:body>
+    <div id="parts">
+        <div id="title">
+            <span>
+                Лабораторная работа №3 Batman Edition<br/> Пименов Данила P3230 <br/> Вариант: 13
+            </span>
+        </div>
+
+        <div id="main">
+            <p:clock displayMode="analog"/>
+            <p:clock pattern="dd.MM.yyyy"/>
+            <br/>
+            <br/>
+            <h:form>
+                <p:commandButton onclick="show()" value="Go to the dungeon" action="index?faces-redirect = true" styleClass="ui-button-secondary"/>
+            </h:form>
+            <span id="db" style="display: none">Подключение к БД...</span>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function show() {
+            document.getElementById("db").style.display = '';
+        }
+    </script>
+</h:body>
+
+</html>
