@@ -6,8 +6,8 @@
         <!-- JDBC Database connection settings -->
         <property name="connection.driver_class">org.postgresql.Driver</property>
         <property name="connection.url">jdbc:postgresql://localhost:5433/studs</property>
-        <property name="connection.username">s311764</property>
-        <property name="connection.password">xnk800</property>
+        <property name="connection.username">login</property>
+        <property name="connection.password">password</property>
         <!-- JDBC connection pool settings ... using built-in test pool -->
         <property name="connection.pool_size">1</property>
         <!-- Select our SQL dialect -->
